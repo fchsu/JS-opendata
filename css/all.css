@@ -1,0 +1,120 @@
+/*css reset*/
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/*自訂css reset*/
+img{
+	max-width: 100%;
+	height: auto;
+}
+a{
+	text-decoration: none;
+}
+*, *:before, *:after{
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+}
+*, *:focus{
+	outline: none;
+}
+
+/*自訂css開始*/
+body{
+	background-image: url('../img/raban-haaijk-118657-unsplash.jpg');
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	-webkit-background-size: cover;
+	background-size: cover;
+	font-family: 微軟正黑體;
+}
+.wrap{
+	max-width: 1024px;
+	margin: 0 auto;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+h1{
+	display: block;
+	margin: 100px 0 50px 0;
+	font-size: 32px;
+	font-weight: bold;
+	color: #fff;
+	box-shadow: 
+}
+select{
+	width: 300px;
+	height: 50px;
+	margin-bottom: 50px;
+	outline: none;
+	border: 3px solid #FFFFFF;
+	border-radius: 3px;
+	background: rgba(255,255,255,0.70) url('../img/icons_down.png') no-repeat 98% 50%;
+	appearance:none;
+  -moz-appearance:none;
+  -webkit-appearance:none;
+	display: flex;
+	align-items: center;
+	padding-left: 9px;
+	font-size: 18px;
+	font-weight: bold;
+	color: #000000;
+	cursor: pointer;
+}
+select:hover{
+	background-color: rgba(255,255,255,0.80);
+}
+select:active{
+	background-position: 98% 60%;
+}
+
+
+/*mapId css*/
