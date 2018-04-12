@@ -78,6 +78,7 @@ body{
 .wrap{
 	max-width: 1024px;
 	margin: 0 auto;
+	padding-bottom: 10px;
 }
 
 /*header css*/
@@ -88,12 +89,17 @@ body{
 }
 h1{
 	display: block;
-	margin: 100px 0 50px 0;
+	text-align: center;
+	margin: 50px 0 50px 0;
 	font-size: 32px;
 	font-weight: bold;
+	line-height: 1.1;
 	color: #fff;
 	-webkit-filter: drop-shadow(2px 2px 2px #424242);
-  filter: drop-shadow(2px 2px 2px #424242); 
+	filter: drop-shadow(2px 2px 2px #424242); 
+}
+h1 span{
+	display: none;
 }
 select{
 	width: 300px;
@@ -103,8 +109,8 @@ select{
 	border-radius: 3px;
 	background: rgba(255,255,255,0.70) url('../img/icons_down.png') no-repeat 98% 50%;
 	appearance:none;
-  -moz-appearance:none;
-  -webkit-appearance:none;
+	-moz-appearance:none;
+	-webkit-appearance:none;
 	padding-left: 9px;
 	font-size: 18px;
 	font-weight: bold;
@@ -117,20 +123,209 @@ select:hover{
 select:active{
 	background-position: 98% 60%;
 }
+/*header media css*/
+@media (max-width: 812px){	/*iPhoneX 橫式*/
+
+}
+@media (max-width: 768px){	/*iPad 直式*/
+
+}
+@media (max-width: 767px){
+	h1{
+		margin: 20px 0 20px 0;
+	}
+	select{
+		margin-bottom: 22px;
+	}	
+}
+@media (max-width: 736px){	/*iPhone678 plus 橫式*/
+
+}
+@media (max-width: 667px){	/*iPhone678 橫式*/
+
+}
+@media (max-width: 568px){	/*iPhone5 橫式*/
+	h1 span{
+		display: block;
+		font-size: 0;
+	}
+}
+@media (max-width: 414px){	/*iPhone678 plus 直式*/
+				
+}
+@media (max-width: 375px){	/*iPhone678X 直式*/
+
+}
+@media (max-width: 320px){	/*iPhone5 直式*/
+	h1{
+		font-size: 28px;
+	}
+}
 
 /*content css*/
 .content{
 	max-width: 1000px;
-	margin: 0 auto;
+	margin: 0 auto 30px auto;
 	display: flex;
 }
 #mapId{
-	width: 500px;
+	width: 50%;
 	height: 500px;
 	border: 1px solid #000;
-	margin-right: 50px;
+	margin-right: 1%;
 }
 .detail{
-	max-width: 450px;
+	width: 49%;
+	height: 500px;
 	background-color: rgba(255, 255, 255 , 0.5);
+	border: 1px solid #000;
+}
+h2{
+	display: none;
+	text-align: center;
+	font-size: 36px;
+	font-weight: bold;
+	color: #fff;
+	padding: 10px 0;
+	background-color: rgba(71, 55, 55, 0.8);
+	border-bottom: 1px solid #000;
+	box-shadow: 2px 2px 2px 2px rgb(206, 190, 173) inset, -2px -2px 2px 2px rgb(206, 190, 173) inset;
+}
+#remindTextId{
+	position: relative;
+	top: 45%;
+	text-align: center;
+	font-size: 48px;
+	font-weight: bold;
+	color: #fff;
+	-webkit-filter: drop-shadow(2px 2px 2px #424242);
+	filter: drop-shadow(2px 2px 2px #424242); 
+}
+.listClass{
+	height: 443px;
+	overflow: auto;
+}
+.listClass > li{
+	display: flex;
+	background: linear-gradient(rgba(162, 214, 119, 0.8), rgba(72, 132, 22, 0.8));
+	cursor: pointer;
+}
+.listClass > li:hover{
+	background: linear-gradient(rgba(162, 214, 219, 0.9), rgba(72, 132, 122, 0.9));
+}
+.listClass > li:active{
+	background: linear-gradient(rgba(162, 192, 219, 0.9), rgba(72, 100, 132, 0.9));
+}
+.listClass .background-linearGradient{
+	background: linear-gradient(rgba(162, 192, 219, 0.9), rgba(72, 100, 132, 0.9));
+	box-shadow: 2px 2px 2px 2px rgba(144, 67, 165, 0.6) inset, -2px -2px 2px 2px rgba(144, 67, 165, 0.6) inset;
+}
+.listClass > li > span{
+	font-size: 30px;
+	font-weight: bold;
+	color: #a80000;
+	width: 14.3%;
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+}
+.listClass ul{
+	width: 84%;
+	font-size: 16px;
+	font-weight: bold;
+	padding-top: 10px;
+}
+.listClass ul li{
+	margin-bottom: 10px;
+}
+.speedLimit{
+	color: #e80202;
+	font-size: 20px;
+	-webkit-filter: drop-shadow(1px 1px 1px #e80202);
+	filter: drop-shadow(1px 1px 1px #e80202); 
+}
+/*content media css*/
+@media (max-width: 812px){	/*iPhoneX 橫式*/
+
+}
+@media (max-width: 768px){	/*iPad 直式*/
+
+}
+@media (max-width: 767px){
+	.content{
+		margin: 0 auto 15px auto;
+	}						
+	.listClass > li > span{
+		font-size: 24px;
+	}
+}
+@media (max-width: 736px){	/*iPhone678 plus 橫式*/
+
+}
+@media (max-width: 667px){	/*iPhone678 橫式*/
+	.detail{
+		display: none;
+	}
+	#mapId{
+		width: 98%;
+		margin: 0 auto;
+	}
+}
+@media (max-width: 568px){	/*iPhone5 橫式*/
+
+}
+@media (max-width: 414px){	/*iPhone678 plus 直式*/
+
+}
+@media (max-width: 375px){	/*iPhone678X 直式*/
+}
+@media (max-width: 320px){	/*iPhone5 直式*/
+}
+
+/*footer css*/
+.footer{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	color: #fff;
+	font-size: 16px;
+	font-weight: bold;
+	line-height: 1.2;
+	-webkit-filter: drop-shadow(2px 2px 2px #424242);
+	filter: drop-shadow(2px 2px 2px #424242); 
+}
+.footer a{
+	color: #fff;
+	text-decoration: underline;
+}
+.footer a:hover{
+	color: #333333;
+	-webkit-filter: drop-shadow(2px 2px 2px #fff);
+	filter: drop-shadow(2px 2px 2px #fff); 
+}
+/*footer media css*/
+@media (max-width: 812px){	/*iPhoneX 橫式*/
+
+}
+@media (max-width: 768px){	/*iPad 直式*/
+
+}
+@media (max-width: 767px){
+
+}
+@media (max-width: 736px){	/*iPhone678 plus 橫式*/
+
+}
+@media (max-width: 667px){	/*iPhone678 橫式*/
+
+}
+@media (max-width: 568px){	/*iPhone5 橫式*/
+
+}
+@media (max-width: 414px){	/*iPhone678 plus 直式*/
+
+}
+@media (max-width: 375px){	/*iPhone678X 直式*/
+}
+@media (max-width: 320px){	/*iPhone5 直式*/
 }
