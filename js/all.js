@@ -219,6 +219,16 @@ function initMap(e){
 function zonePosition(e){
 	const Len = recordsData.length;
 	const select = e.target.value;
+	const remindText = document.querySelector('#remindTextId');
+	const zoneName = document.querySelector('#zoneNameId');
+	const listClass = document.querySelector('.listClass');
+	if (select === '_'){
+		remindText.style.display = 'block';
+		zoneName.style.display = 'none';
+		listClass.innerHTML = '';
+		return;
+	}
+	// 將選擇的行政區的每筆資料存放至 zone 陣列
 	const zone = recordsData.filter((object, index, array) => {
 		return `${object['行政區']}區` === select;
 	});
@@ -226,17 +236,20 @@ function zonePosition(e){
 	let str = '';
 	for (let i = 0; i < zoneLen; i++){
 		str += `
-		<li>
+		<li data-num='${i}'>
 			<span>${(i + 1)}</span>
 			<ul>
-				<li>速限: ${zone[i]['速限']}</li>
+				<li>速限: <span class='speedLimit'>${zone[i]['速限']}</span></li>
 				<li>測照地點: ${zone[i]['測  照  地  點']}</li>
 				<li>測照型式: ${zone[i]['測照型式']}</li>
 			</ul>
 		</li>`;
 	}
-	document.querySelector('#zoneNameId').textContent = select;
-	document.querySelector('.listClass').innerHTML = str;
+	remindText.style.display = 'none';
+	zoneName.style.display = 'block';
+	zoneName.textContent = select;
+	listClass.innerHTML = str;
+	listClass.scrollTop = 0;
 	mapTag(zone);
 }
 	// 在 google map 顯示行政區內測照地點
@@ -245,6 +258,8 @@ function mapTag(zone){
 	const Len = zone.length;	
 	const centerLat = parseFloat(zone[0]['座標緯(N)度']);
 	const centerLng = parseFloat(zone[0]['座標經(E)度']);
+	let markers = [];
+	let infowindows = [];
 	map = new google.maps.Map(mapDom, {
 		center: {lat: centerLat, lng: centerLng}, 
 		zoom: 12
@@ -257,5 +272,59 @@ function mapTag(zone){
 			map: map,
 			title: `編號${(i + 1)}`
 		});
+		// 偵測螢幕寬度，來決定資訊視窗顯示內容
+		if (window.screen.width > 667){
+			const infowindow = new google.maps.InfoWindow({
+				content: `
+					<ul>
+						<li>編號: ${(i + 1)}</li>
+						<li>速限: ${zone[i]['速限']}</li>
+						<li>測照型式: ${zone[i]['測照型式']}</li>
+					</ul>`,
+				maxWidth: 350
+			});	
+			clickTag(marker, infowindow, i);
+			clickList(marker, infowindow, i);
+		}else{
+			const infowindow = new google.maps.InfoWindow({
+				content: `
+					<ul>
+						<li>編號: ${(i + 1)}</li>
+						<li>速限: ${zone[i]['速限']}</li>
+						<li>測照地點: ${zone[i]['測  照  地  點']}</li>
+						<li>測照型式: ${zone[i]['測照型式']}</li>
+					</ul>`,
+				maxWidth: 350
+			});		
+			clickTag(marker, infowindow, i);
+			clickList(marker, infowindow, i);
+		}
 	}
+}
+	// 點擊 google map 標籤後，在 map 上顯示資訊視窗 
+function clickTag(marker, infowindow, i){
+	marker.addListener('click', () => {
+		infowindow.open(map, marker);
+		document.querySelector(`li[data-num='${i}']`).setAttribute('class', 'background-linearGradient');
+		// 監聽 '點擊 資訊視窗的關閉按鈕'
+		infowindow.addListener('closeclick', () => {
+			document.querySelector(`li[data-num='${i}']`).removeAttribute('class');
+		});
+	});
+}
+	// 點擊 list 後，在 map 上顯示資訊視窗
+function clickList(marker, infowindow, i){
+	document.querySelector(`li[data-num='${i}']`).addEventListener('click', () => {
+		if (document.querySelector(`li[data-num='${i}']`).className === 'background-linearGradient'){
+			infowindow.close(map, marker);
+				document.querySelector(`li[data-num='${i}']`).removeAttribute('class');
+		}else{
+			infowindow.open(map, marker);
+			document.querySelector(`li[data-num='${i}']`).setAttribute('class', 'background-linearGradient');
+			// 監聽 '點擊 資訊視窗的關閉按鈕'
+			infowindow.addListener('closeclick', () => {
+				document.querySelector(`li[data-num='${i}']`).removeAttribute('class');
+			});
+		}
+	}, false);
 }
