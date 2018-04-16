@@ -210,10 +210,10 @@ h2{
 	background: linear-gradient(rgba(162, 214, 119, 0.8), rgba(72, 132, 22, 0.8));
 	cursor: pointer;
 }
-.listClass > li:hover{
+.listClass .zoneListHover:hover{
 	background: linear-gradient(rgba(162, 214, 219, 0.9), rgba(72, 132, 122, 0.9));
 }
-.listClass > li:active{
+.listClass .zoneListHover:active{
 	background: linear-gradient(rgba(162, 192, 219, 0.9), rgba(72, 100, 132, 0.9));
 }
 .listClass .background-linearGradient{
