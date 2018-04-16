@@ -234,16 +234,30 @@ function zonePosition(e){
 	});
 	const zoneLen = zone.length;
 	let str = '';
-	for (let i = 0; i < zoneLen; i++){
-		str += `
-		<li data-num='${i}'>
-			<span>${(i + 1)}</span>
-			<ul>
-				<li>速限: <span class='speedLimit'>${zone[i]['速限']}</span></li>
-				<li>測照地點: ${zone[i]['測  照  地  點']}</li>
-				<li>測照型式: ${zone[i]['測照型式']}</li>
-			</ul>
-		</li>`;
+	if (window.innerWidth > 812){
+		for (let i = 0; i < zoneLen; i++){
+			str += `
+				<li class='zoneListHover' data-num='${i}'>
+					<span>${(i + 1)}</span>
+					<ul>
+						<li>速限: <span class='speedLimit'>${zone[i]['速限']}</span></li>
+						<li>測照地點: ${zone[i]['測  照  地  點']}</li>
+						<li>測照型式: ${zone[i]['測照型式']}</li>
+					</ul>
+				</li>`;
+		}
+	}else{
+		for (let i = 0; i < zoneLen; i++){
+			str += `
+				<li data-num='${i}'>
+					<span>${(i + 1)}</span>
+					<ul>
+						<li>速限: <span class='speedLimit'>${zone[i]['速限']}</span></li>
+						<li>測照地點: ${zone[i]['測  照  地  點']}</li>
+						<li>測照型式: ${zone[i]['測照型式']}</li>
+					</ul>
+				</li>`;
+		}
 	}
 	remindText.style.display = 'none';
 	zoneName.style.display = 'block';
@@ -305,25 +319,25 @@ function mapTag(zone){
 function clickTag(marker, infowindow, i){
 	marker.addListener('click', () => {
 		infowindow.open(map, marker);
-		document.querySelector(`li[data-num='${i}']`).setAttribute('class', 'background-linearGradient');
+		document.querySelector(`li[data-num='${i}']`).classList.add('background-linearGradient');
 		// 監聽 '點擊 資訊視窗的關閉按鈕'
 		infowindow.addListener('closeclick', () => {
-			document.querySelector(`li[data-num='${i}']`).removeAttribute('class');
+			document.querySelector(`li[data-num='${i}']`).classList.remove('background-linearGradient');
 		});
 	});
 }
 	// 點擊 list 後，在 map 上顯示資訊視窗
 function clickList(marker, infowindow, i){
 	document.querySelector(`li[data-num='${i}']`).addEventListener('click', () => {
-		if (document.querySelector(`li[data-num='${i}']`).className === 'background-linearGradient'){
+		if (document.querySelector(`li[data-num='${i}']`).classList.contains('background-linearGradient')){
 			infowindow.close(map, marker);
-				document.querySelector(`li[data-num='${i}']`).removeAttribute('class');
+				document.querySelector(`li[data-num='${i}']`).classList.remove('background-linearGradient');
 		}else{
 			infowindow.open(map, marker);
-			document.querySelector(`li[data-num='${i}']`).setAttribute('class', 'background-linearGradient');
+			document.querySelector(`li[data-num='${i}']`).classList.add('background-linearGradient');
 			// 監聽 '點擊 資訊視窗的關閉按鈕'
 			infowindow.addListener('closeclick', () => {
-				document.querySelector(`li[data-num='${i}']`).removeAttribute('class');
+				document.querySelector(`li[data-num='${i}']`).classList.remove('background-linearGradient');
 			});
 		}
 	}, false);
