@@ -5,28 +5,24 @@ var map;
 
 
 // 動作與監聽
-updated();
+getjson();
 selectArea.addEventListener('change', zonePosition, false);
 
 
 // 函式設定
 	// 遠端讀取資料
-function updated(e){
-	for (let i = 0; i < 3; i++){
-		const xhr = new XMLHttpRequest();
-		xhr.open('get', `https://data.kcg.gov.tw/api/action/datastore_search?offset=${i * 100}&resource_id=ec196e10-d3da-412d-b178-738ce06f62e2`, true);
-		xhr.send(null);
-		xhr.onload = () => {
-			if (xhr.readyState === 4){
-				if (xhr.status === 200){
-					const data = JSON.parse(xhr.responseText).result.records;		
-					// 陣列合併
-					recordsData = recordsData.concat(data);
-				}
+function getjson(){
+	const xhr = new XMLHttpRequest();
+	xhr.open('get', '../json/data.JSON', true);
+	xhr.send(null);
+	xhr.onload = () => {
+		if (xhr.readyState === 4){
+			if (xhr.status === 200){
+				recordsData = JSON.parse(xhr.responseText);
+				zoneDisplay();
 			}
 		}
 	}
-	setTimeout(zoneDisplay, 600);
 }
 	// 將讀取得到的資料放上 HTML <select>
 function zoneDisplay(e){
@@ -34,6 +30,7 @@ function zoneDisplay(e){
 	const zoneData = recordsData.map((object) => {
 		return object['行政區'];
 	});
+
 	// 將重複的資料剃除，建立只保留一筆行政區資料的陣列
 	const zoneDataList = zoneData.filter((item, index, array) => {
 		return array.indexOf(item) === index;
