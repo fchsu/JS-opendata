@@ -4,13 +4,36 @@ var recordsData = [];
 var map;
 
 
+
 // 動作與監聽
 updated();
 selectArea.addEventListener('change', zonePosition, false);
 
+getjson('../json/data.JSON', function(text){
+	const recordsjson = JSON.parse(text);
+  console.log(recordsjson);
+});
+
 
 // 函式設定
 	// 遠端讀取資料
+function getjson(file, callback){
+	const xhr = new XMLHttpRequest();
+	xhr.overrideMimeType("application/json");
+		xhr.open('get', file, true);
+		xhr.send(null);
+		xhr.onload = () => {
+			if (xhr.readyState === 4){
+				if (xhr.status === 200){
+					// const recordsjson = JSON.parse(xhr.responseText);
+					// console.log(recordsjson);
+
+					callback(xhr.responseText);
+				}
+			}
+		}
+}
+
 function updated(e){
 	for (let i = 0; i < 3; i++){
 		const xhr = new XMLHttpRequest();
