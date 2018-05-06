@@ -13,7 +13,7 @@ selectArea.addEventListener('change', zonePosition, false);
 	// 遠端讀取資料
 function getjson(){
 	const xhr = new XMLHttpRequest();
-	xhr.open('get', '../json/data.JSON', true);
+	xhr.open('get', 'json/data.JSON', true);
 	xhr.send(null);
 	xhr.onload = () => {
 		if (xhr.readyState === 4){
