@@ -238,7 +238,7 @@ function zonePosition(e){
 					<span>${(i + 1)}</span>
 					<ul>
 						<li>速限: <span class='speedLimit'>${zone[i]['速限']}</span></li>
-						<li>測照地點: ${zone[i]['測  照  地  點']}</li>
+						<li>測照地點: ${zone[i]['測 照 地 點']}</li>
 						<li>測照型式: ${zone[i]['測照型式']}</li>
 					</ul>
 				</li>`;
@@ -250,7 +250,7 @@ function zonePosition(e){
 					<span>${(i + 1)}</span>
 					<ul>
 						<li>速限: <span class='speedLimit'>${zone[i]['速限']}</span></li>
-						<li>測照地點: ${zone[i]['測  照  地  點']}</li>
+						<li>測照地點: ${zone[i]['測 照 地 點']}</li>
 						<li>測照型式: ${zone[i]['測照型式']}</li>
 					</ul>
 				</li>`;
@@ -302,7 +302,7 @@ function mapTag(zone){
 					<ul>
 						<li>編號: ${(i + 1)}</li>
 						<li>速限: ${zone[i]['速限']}</li>
-						<li>測照地點: ${zone[i]['測  照  地  點']}</li>
+						<li>測照地點: ${zone[i]['測 照 地 點']}</li>
 						<li>測照型式: ${zone[i]['測照型式']}</li>
 					</ul>`,
 				maxWidth: 350
